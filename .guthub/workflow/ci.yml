@@ -21,7 +21,6 @@ jobs:
         uses: actions/checkout@v4
 
       # Step 2: Sets up Java Development Kit (JDK) 17
-      # This matches the version in your pom.xml
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -29,7 +28,6 @@ jobs:
           distribution: 'temurin'
 
       # Step 3: Run the tests using Maven
-      # This is the core step where your tests are executed
       - name: Run Maven Tests
         env:
           # This securely passes your Zephyr API token to the test run
