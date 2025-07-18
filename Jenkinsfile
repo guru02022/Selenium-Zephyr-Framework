@@ -44,7 +44,7 @@ pipeline {
             echo 'Some tests failed. Please check the console output and screenshots.'
         }
         always {
-            junit '**/test-output/testng-results.xml'
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
