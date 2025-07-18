@@ -1,0 +1,37 @@
+# Name of your CI/CD pipeline
+name: Build and Test Automation
+
+# Controls when the pipeline runs
+on:
+  # Triggers the pipeline on push events to the "main" branch
+  push:
+    branches: [ "main" ]
+  # Allows you to run this pipeline manually from the Actions tab
+  workflow_dispatch:
+
+# Defines the jobs that the pipeline will run
+jobs:
+  build-and-test:
+    # The type of virtual machine to run the job on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checks out your repository's code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Sets up Java Development Kit (JDK) 17
+      # This matches the version in your pom.xml
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # Step 3: Run the tests using Maven
+      # This is the core step where your tests are executed
+      - name: Run Maven Tests
+        env:
+          # This securely passes your Zephyr API token to the test run
+          ZEPHYR_API_TOKEN: ${{ secrets.ZEPHYR_API_TOKEN }}
+        run: mvn clean test
