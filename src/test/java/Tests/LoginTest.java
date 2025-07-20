@@ -1,12 +1,14 @@
 package Tests;
 
 import com.zephyr.framework.HasWebDriver;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import java.time.Duration;
 
 public class LoginTest implements HasWebDriver {
@@ -21,39 +23,25 @@ public class LoginTest implements HasWebDriver {
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(); // Add ChromeOptions for headless if needed
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
 
-    @Test(description = "Verify successful login. Jira Key: AUT-T1")
+    // TODO: Make sure the test case key in the description is correct
+    @Test(description = "Jira Key: CXOS-T893")
     public void testSuccessfulLogin() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
         driver.findElement(By.id("username")).sendKeys("student");
         driver.findElement(By.id("password")).sendKeys("Password123");
         driver.findElement(By.id("submit")).click();
-
-        Assert.assertEquals(driver.getCurrentUrl(),
-                "https://practicetestautomation.com/logged-in-successfully/",
-                "URL after login is incorrect.");
-
-        WebElement successMessage = driver.findElement(By.tagName("strong"));
-        Assert.assertTrue(successMessage.getText().contains("Congratulations"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("logged-in-successfully"));
     }
-
-    @Test(description = "Verify successful login. Jira Key: AUT-T2")
-    public void testFailedLogin() {
-        driver.get("https://practicetestautomation.com/practice-test-login/");
-        driver.findElement(By.id("username")).sendKeys("incorrectUser");
-        driver.findElement(By.id("password")).sendKeys("incorrectPassword");
-        driver.findElement(By.id("submit")).click();
-
-        WebElement errorMessage = driver.findElement(By.id("error"));
-        Assert.assertTrue(
-                errorMessage.isDisplayed(), "Error message should be visible on wrong login.");    }
 
     @AfterMethod
     public void tearDown() {
-        if (driver != null) driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

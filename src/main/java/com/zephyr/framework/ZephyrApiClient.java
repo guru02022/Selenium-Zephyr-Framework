@@ -9,7 +9,7 @@ public class ZephyrApiClient {
     private static final String ZEPHYR_API_URL = "https://api.zephyrscale.smartbear.com/v2";
 
     // TODO: Generate and paste your Zephyr Scale API Token here.
-    private static final String ZEPHYR_API_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjb250ZXh0Ijp7ImJhc2VVcmwiOiJodHRwczovL2d1cnUxMjM0NS5hdGxhc3NpYW4ubmV0IiwidXNlciI6eyJhY2NvdW50SWQiOiI3MTIwMjA6YjlkMzNkMTItMTI1Yi00NDE5LThjZDgtMTg1NWEzNmExZjEzIiwidG9rZW5JZCI6IjAyYWI1ZGE1LWFiOGEtNGU3Mi04NDU2LWRiYzFiMzVlMmUyOSJ9fSwiaXNzIjoiY29tLmthbm9haC50ZXN0LW1hbmFnZXIiLCJzdWIiOiIwYzdhNmQ4ZS1kMTQzLTM5Y2EtYjQyNC1lZDA5MWJhMTE0NGIiLCJleHAiOjE3ODQ1NDQ5OTEsImlhdCI6MTc1MzAwODk5MX0.JtgBCO6LNm8Q5ckul2_PJGHxvCbpurneuJXJA1hoZh8";
+    private static final String ZEPHYR_API_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjb250ZXh0Ijp7ImJhc2VVcmwiOiJodHRwczovL2xpYmVydHl3aXJlbGVzcy5hdGxhc3NpYW4ubmV0IiwidXNlciI6eyJhY2NvdW50SWQiOiI3MTIwMjA6MGZjZjU4NDgtMDlmNS00ZGUyLThmMDQtYTlmOWUwYzQ2OTdhIiwidG9rZW5JZCI6IjM0MTYyOThlLTEyMTEtNDI2My1hMTI5LTVhMzJiMTU4MDRlYSJ9fSwiaXNzIjoiY29tLmthbm9haC50ZXN0LW1hbmFnZXIiLCJzdWIiOiJqaXJhOmYxMmJkYWNlLTVmOTUtNGZlOS1iNDZjLWZiNGNmNWMxMzA5NSIsImV4cCI6MTc4NDU1MjI3MywiaWF0IjoxNzUzMDE2MjczfQ.mFYoxb1tqvsb2T8J2blG3KxfoQZzk1iMXEzEEVl6URo";
 
     public static Response createTestExecution(String payload) {
         try {
@@ -24,4 +24,5 @@ public class ZephyrApiClient {
             return null;
         }
     }
-}
+
+ }
