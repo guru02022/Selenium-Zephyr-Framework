@@ -26,7 +26,7 @@ public class LoginTest implements HasWebDriver {
         driver.manage().window().maximize();
     }
 
-    @Test(description = "Verify successful login. Jira Key: ECS-T1")
+    @Test(description = "Verify successful login. Jira Key: AUT-T1")
     public void testSuccessfulLogin() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
         driver.findElement(By.id("username")).sendKeys("student");
@@ -41,7 +41,7 @@ public class LoginTest implements HasWebDriver {
         Assert.assertTrue(successMessage.getText().contains("Congratulations"));
     }
 
-    @Test(description = "Verify successful login. Jira Key: ECS-T2")
+    @Test(description = "Verify successful login. Jira Key: AUT-T2")
     public void testFailedLogin() {
         driver.get("https://practicetestautomation.com/practice-test-login/");
         driver.findElement(By.id("username")).sendKeys("incorrectUser");

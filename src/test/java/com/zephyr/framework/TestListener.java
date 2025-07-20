@@ -38,7 +38,7 @@ public class TestListener extends TestListenerAdapter {
         String description = result.getMethod().getDescription();
         if (description != null) {
             // Updated regex to find keys like AUT-T1, AUT-T-1
-            Pattern pattern = Pattern.compile("([A-Z]+-T-?\\d+)");
+            Pattern pattern = Pattern.compile("([A-Z]+-T\\d+)");
             Matcher matcher = pattern.matcher(description);
             if (matcher.find()) {
                 return matcher.group(1);

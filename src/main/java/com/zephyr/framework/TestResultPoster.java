@@ -4,17 +4,20 @@ import io.restassured.response.Response;
 
 public class TestResultPoster {
 
-    private static final String JIRA_PROJECT_KEY = "ECS";
+    private static final String JIRA_PROJECT_KEY = "AUT";
+
     private static final String TEST_CYCLE_KEY = "AUT-R1";
 
     public static void postResult(String testCaseKey, String status, String comment, String screenshotPath) {
+        // Basic escaping to prevent errors if the comment contains quotes.
+        String formattedComment = comment.replace("\"", "\\\"");
+
         String payload = String.format(
                 "{\"projectKey\": \"%s\", \"testCaseKey\": \"%s\", \"statusName\": \"%s\", \"testCycleKey\": \"%s\", \"comment\": {\"text\": \"%s\"}}",
-                JIRA_PROJECT_KEY, testCaseKey, status, TEST_CYCLE_KEY, comment
+                JIRA_PROJECT_KEY, testCaseKey, status, TEST_CYCLE_KEY, formattedComment
         );
 
         System.out.println("Sending payload to Zephyr Scale: " + payload);
-
         Response response = ZephyrApiClient.createTestExecution(payload);
 
         if (response != null && response.getStatusCode() == 201) {
