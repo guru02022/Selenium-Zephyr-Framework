@@ -1,5 +1,6 @@
 package com.zephyr.framework;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import java.util.regex.Matcher;
@@ -18,6 +19,11 @@ public class TestListener extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult result) {
+        Object testInstance = result.getInstance();
+        if (testInstance instanceof HasWebDriver) {
+            WebDriver driver = ((HasWebDriver) testInstance).getDriver();
+            ScreenshotUtil.captureScreenshot(driver, result.getName()); // <-- Capture screenshot here
+        }
         handleResult(result, "Fail");
     }
 
